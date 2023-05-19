@@ -1,0 +1,21 @@
+@(form: Form[contentForm.Data], postUrl: Call)(implicit request: MessagesRequestHeader)
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <title>ぼやき</title>
+  <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+</head>
+<body>
+  <h1>ぼやき</h1>
+  <p>ぼやけます</p>
+  @helper.form(postUrl) {
+    @helper.CSRF.formField
+    @helper.textarea(form("content"), '_label -> "ぼやき", '_showConstraints -> false)
+    @helper.inputText(form("password"), '_label -> "パスワード", '_showConstraints -> false)
+    <div class="button-wrapper">
+      <input class="button" type="submit"  value="ぼやく"> 
+    </div>
+  }
+</body>
+</html>
